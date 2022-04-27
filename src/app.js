@@ -3,8 +3,10 @@ const express = require("express");
 const app = express();
 
 const moviesRouter = require("./routes/movies/movies.router");
+const reviewsRouter = require("./routes/reviews/reviews.router");
 
 app.use("/movies", moviesRouter);
+app.use("/reviews", reviewsRouter);
 
 // not-found handler
 app.use((request, response, next) => {

@@ -39,7 +39,7 @@ async function movieExists(request, response, next) {
 
     next({
         status: 404,
-        error: `Movie cannot be found.`
+        message: `Movie cannot be found.`
     });
 }
 
