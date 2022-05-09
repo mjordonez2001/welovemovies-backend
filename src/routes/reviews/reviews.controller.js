@@ -13,7 +13,7 @@ async function update(request, response, next) {
     }
 
     await service.update(updatedReview);
-    const data = await service.read(reviewId)
+    const data = await service.readUpdate(reviewId)
     
     response.json({ data: data })
 }
