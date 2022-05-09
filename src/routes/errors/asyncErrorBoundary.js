@@ -1,3 +1,4 @@
+// handles asyncronous error boundary
 function asyncErrorBoundary(delegate, defaultStatus) {
     return (request, response, next) => {
       Promise.resolve()

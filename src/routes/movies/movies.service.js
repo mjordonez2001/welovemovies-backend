@@ -1,10 +1,12 @@
 const knex = require("../../db/connection");
 
+// knex query that lists all movies in the movies table
 function list() {
     return knex("movies")
         .select("*")
 }
 
+// knex query that lists all movies that have "is_showing" as true
 function listMoviesShowing() {
     return knex("movies as m")
         .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")
@@ -13,6 +15,7 @@ function listMoviesShowing() {
         .where({ "mt.is_showing": true })
 }
 
+// knex query that returns the movie from the given movieId
 function read(movieId) {
     return knex("movies")
         .select("*")
@@ -20,6 +23,7 @@ function read(movieId) {
         .first();
 }
 
+// knex query that lists all theaters where the given movie is playing 
 function readTheaters(movieId) {
     return knex("movies as m")
         .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")
@@ -28,6 +32,7 @@ function readTheaters(movieId) {
         .where({ "mt.movie_id": movieId })
 }
 
+// function that adds a critic object to the review 
 async function addCritic(review, criticId) {
     review.critic = await knex("critics")
         .select("*")
@@ -36,6 +41,8 @@ async function addCritic(review, criticId) {
     return review;
 }
 
+// list function that returns all the reviews from the given movie
+// uses the addCritic function to add critics to the reviews 
 async function readReviews(movieId) {
     return knex("reviews as r")
         .select("*")
