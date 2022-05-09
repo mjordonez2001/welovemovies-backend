@@ -4,13 +4,16 @@ const res = require("express/lib/response");
 
 async function update(request, response, next) {
     const updateData = request.body.data;
-    console.log(updateData)
+    const reviewId = request.params.reviewId;
 
     const updatedReview = {
+        ...response.locals.review,
         ...updateData,
-        review_id: request.params.reviewId
+        review_id: reviewId
     }
-    const data = await service.update(updatedReview);
+
+    await service.update(updatedReview);
+    const data = await service.read(reviewId)
     
     response.json({ data: data })
 }
@@ -25,8 +28,10 @@ async function destroy(request, response, next) {
 
 async function reviewExists(request, response, next) {
     const data = await service.read(request.params.reviewId);
-    if (data) return next();
-
+    if (data) {
+        response.locals.review = data;
+        return next();
+    }
     next({
         status: 404,
         message: `Review cannot be found.`
