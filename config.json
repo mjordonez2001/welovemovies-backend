@@ -1,0 +1,9 @@
+{
+    "production": {
+      "username": "lkecqdqp",
+      "password": "4ZTSQpFGW4YSsSUyljK3_ABandt_TQhX",
+      "database": "lkecqdqp",
+      "host": "fanny.db.elephantsql.com",
+      "dialect": "postgres"
+    }
+  }
