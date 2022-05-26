@@ -1,5 +1,5 @@
 const path = require('path')
   
 module.exports = {
-  "config": path.resolve('./config', 'config.json'),
+    "config": path.resolve('./server/config', 'config.json'),
 };

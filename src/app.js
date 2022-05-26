@@ -1,6 +1,10 @@
+import http from 'http';
+
 if (process.env.USER) require("dotenv").config();
 const express = require("express");
 const app = express();
+
+const server = http.createServer(app);
 
 const moviesRouter = require("./routes/movies/movies.router");
 const reviewsRouter = require("./routes/reviews/reviews.router");
